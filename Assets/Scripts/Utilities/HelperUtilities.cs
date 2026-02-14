@@ -32,6 +32,12 @@ public static class HelperUtilities
         bool error = false;
         int count = 0;
 
+        if (enumerableToCheck == null)
+        {
+            Debug.LogError($"{fieldName} has no values in object {thisObject.name}");
+            return true;
+        }
+
         foreach (var item in enumerableToCheck)
         {
             if (item == null)

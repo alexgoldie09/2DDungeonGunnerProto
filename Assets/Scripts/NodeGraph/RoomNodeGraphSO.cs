@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 
 [CreateAssetMenu(fileName = "RoomNodeGraph", menuName = "Scriptable Objects/Dungeon/Room Node Graph")]
@@ -26,25 +27,35 @@ public class RoomNodeGraphSO : ScriptableObject
         roomNodeDictionary.Clear();
         
         // Populate the dictionary
-        foreach (RoomNodeSO node in roomNodeList)
+        foreach (var node in roomNodeList)
         {
             roomNodeDictionary[node.id] = node;
         }
     }
+
+    /// <summary>
+    /// Get room node by room node type
+    /// </summary>
+    /// <param name="roomNodeType"></param>
+    /// <returns></returns>
+    public RoomNodeSO GetRoomNode(RoomNodeTypeSO roomNodeType) => 
+        roomNodeList.FirstOrDefault(node => node.roomNodeType == roomNodeType);
     
     /// <summary>
     /// Get room node by room node ID
     /// </summary>
     /// <param name="roomNodeID"></param>
     /// <returns></returns>
-    public RoomNodeSO GetRoomNode(string roomNodeID)
-    {
-        if (roomNodeDictionary.TryGetValue(roomNodeID, out RoomNodeSO roomNode))
-        {
-            return roomNode;
-        }
-        return null;
-    }
+    public RoomNodeSO GetRoomNode(string roomNodeID) => roomNodeDictionary.GetValueOrDefault(roomNodeID);
+
+    /// <summary>
+    /// Get all the child room nodes from a parent room node
+    /// </summary>
+    /// <param name="parentRoomNode"></param>
+    /// <returns></returns>
+    public IEnumerable<RoomNodeSO> GetChildRoomNodes(RoomNodeSO parentRoomNode) => 
+        parentRoomNode.childRoomNodeIDList.Select(GetRoomNode);
+    
     #region Editor Code
     // The following should only be run in the Unity Editor
 #if UNITY_EDITOR
