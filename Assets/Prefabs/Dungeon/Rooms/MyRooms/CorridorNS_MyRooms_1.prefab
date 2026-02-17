@@ -226,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4496745017627490817}
   - component: {fileID: 7498653051875562107}
+  - component: {fileID: 3019793651142369011}
   m_Layer: 12
   m_Name: CorridorNS_MyRooms_1
   m_TagString: Untagged
@@ -296,6 +297,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 9, y: 22}
   m_EdgeRadius: 0
+--- !u!114 &3019793651142369011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753787965137583580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d78985b947e5daf40926082d5a04ac43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InstantiatedRoom
 --- !u!1 &1854301504615910880
 GameObject:
   m_ObjectHideFlags: 0

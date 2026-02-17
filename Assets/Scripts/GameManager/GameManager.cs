@@ -48,7 +48,12 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     private void PlayDungeonLevel(int dungeonLevelIndex)
     {
+        // Build dungeon for level
+        bool dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevels[dungeonLevelIndex]);
         
+        string message = dungeonBuiltSuccessfully ? "Dungeon successfully built!" : "Couldn't generate dungeon level!";
+        
+        Debug.Log(message);
     }
     
     #region Validation
